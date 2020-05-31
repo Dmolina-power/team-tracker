@@ -100,6 +100,36 @@ function addEngineer() {
         initialPrompt();
     })
 } 
+function addIntern() {
+    inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "Enter interns name",
+        },
+        {
+            name: "id",
+            type: "input",
+            message: "Enter interns ID",
+        },
+        {
+            name: "email",
+            type: "input",
+            message: "Enter interns email",
+        },
+        {
+            name: "schoolName",
+            type: "input",
+            message: "Which bootcamp does intern attend?",
+        }
+    ]).then(function(res) {
+        var intern = new Intern(res.name, res.id, res.email, res.schoolName)
+        teamMembers.push(intern);
+        console.log(res);
+        initialPrompt();
+    })
+}
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
