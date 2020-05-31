@@ -10,7 +10,34 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+function initialPrompt() {
+  inquirer
+    .prompt([
+      {
+        name: "Profession",
+        type: "list",
+        message: "What is the team member's RANK that you would like to ADD?",
+        choices: ["Manager", "Engineer", "Intern"],
+      },
+    ])
+    .then(function (response) {
+      switch (response.Profession) {
+        case "Manager":
+          addManager();
+          break;
+        case "Engineer":
+          addEngineer();
+          break;
+        case "Intern":
+          addIntern();
+          break;
+        default:
+          exitApplication();
+      }
+    });
+}
 
+initialPrompt();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
