@@ -38,6 +38,40 @@ function initialPrompt() {
 }
 
 initialPrompt();
+
+function addManager() {
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        type: "input",
+        message: "Enter managers name",
+      },
+      {
+        name: "id",
+        type: "input",
+        message: "Enter managers ID",
+      },
+      {
+        name: "email",
+        type: "input",
+        message: "Enter managers email",
+      },
+      {
+        name: "officeId",
+        type: "input",
+        message: "Enter managers office number",
+        
+      },
+    ])
+    .then(function (res) {
+      var manager = new Manager(res.name, res.id, res.email, res.officeId);
+      teamMembers.push(manager);
+      console.log(res);
+      initialPrompt();
+    });
+}
+      
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
