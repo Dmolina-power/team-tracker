@@ -71,7 +71,35 @@ function addManager() {
       initialPrompt();
     });
 }
-      
+function addEngineer() {
+    inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "Enter engineers name",
+        },
+        {
+            name: "id",
+            type: "input",
+            message: "Enter engineers ID",
+        },
+        {
+            name: "email",
+            type: "input",
+            message: "Enter engineers email",
+        },
+        {
+            name: "githubName",
+            type: "input",
+            message: "Enter engineers GitHub name",
+        }
+    ]).then(function(res) {
+        var engineer = new Engineer(res.name, res.id, res.email, res.githubName)
+        teamMembers.push(engineer);
+        console.log(res);
+        initialPrompt();
+    })
+} 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
