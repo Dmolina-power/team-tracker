@@ -17,13 +17,7 @@ function initialPrompt() {
         name: "profession",
         type: "list",
         message: "What is the team member's RANK that you would like to ADD?",
-        choices: [
-            "manager",
-            "engineer",
-            "intern",
-            "Exit application"
-        ]
-        
+        choices: ["manager", "engineer", "intern", "Exit application"],
       },
     ])
     .then(function (response) {
@@ -67,7 +61,6 @@ function addManager() {
         name: "officeId",
         type: "input",
         message: "Enter managers office number",
-        
       },
     ])
     .then(function (res) {
@@ -78,72 +71,75 @@ function addManager() {
     });
 }
 function addEngineer() {
-    inquirer.prompt([
-        {
-            name: "name",
-            type: "input",
-            message: "Enter engineers name",
-        },
-        {
-            name: "id",
-            type: "input",
-            message: "Enter engineers ID",
-        },
-        {
-            name: "email",
-            type: "input",
-            message: "Enter engineers email",
-        },
-        {
-            name: "githubName",
-            type: "input",
-            message: "Enter engineers GitHub name",
-        }
-    ]).then(function(res) {
-        var engineer = new Engineer(res.name, res.id, res.email, res.githubName)
-        teamMembers.push(engineer);
-        console.log(res);
-        initialPrompt();
-    })
-} 
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        type: "input",
+        message: "Enter engineers name",
+      },
+      {
+        name: "id",
+        type: "input",
+        message: "Enter engineers ID",
+      },
+      {
+        name: "email",
+        type: "input",
+        message: "Enter engineers email",
+      },
+      {
+        name: "githubName",
+        type: "input",
+        message: "Enter engineers GitHub name",
+      },
+    ])
+    .then(function (res) {
+      var engineer = new Engineer(res.name, res.id, res.email, res.githubName);
+      teamMembers.push(engineer);
+      console.log(res);
+      initialPrompt();
+    });
+}
 function addIntern() {
-    inquirer.prompt([
-        {
-            name: "name",
-            type: "input",
-            message: "Enter interns name",
-        },
-        {
-            name: "id",
-            type: "input",
-            message: "Enter interns ID",
-        },
-        {
-            name: "email",
-            type: "input",
-            message: "Enter interns email",
-        },
-        {
-            name: "schoolName",
-            type: "input",
-            message: "Which bootcamp does intern attend?",
-        }
-    ]).then(function(res) {
-        var intern = new Intern(res.name, res.id, res.email, res.schoolName)
-        teamMembers.push(intern);
-        console.log(res);
-        initialPrompt();
-    })
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        type: "input",
+        message: "Enter interns name",
+      },
+      {
+        name: "id",
+        type: "input",
+        message: "Enter interns ID",
+      },
+      {
+        name: "email",
+        type: "input",
+        message: "Enter interns email",
+      },
+      {
+        name: "schoolName",
+        type: "input",
+        message: "Which bootcamp does intern attend?",
+      },
+    ])
+    .then(function (res) {
+      var intern = new Intern(res.name, res.id, res.email, res.schoolName);
+      teamMembers.push(intern);
+      console.log(res);
+      initialPrompt();
+    });
 }
 function exitApplication() {
-    var page = render(teamMembers);
-    fs.writeFile(outputPath, page, (err) => {
-        if (err) {
-            return console.log(err);
-        }
-        console.log("Success!");
-    });
-    
+  var page = render(teamMembers);
+  fs.writeFile(outputPath, page, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Success!");
+  });
 }
 
 // Write code to use inquirer to gather information about the development team members,
