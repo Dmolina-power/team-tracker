@@ -9,26 +9,32 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
+const teamMembers = [];
 function initialPrompt() {
   inquirer
     .prompt([
       {
-        name: "Profession",
+        name: "profession",
         type: "list",
         message: "What is the team member's RANK that you would like to ADD?",
-        choices: ["Manager", "Engineer", "Intern"],
+        choices: [
+            "manager",
+            "engineer",
+            "intern",
+            "Exit application"
+        ]
+        
       },
     ])
     .then(function (response) {
-      switch (response.Profession) {
-        case "Manager":
+      switch (response.profession) {
+        case "manager":
           addManager();
           break;
-        case "Engineer":
+        case "engineer":
           addEngineer();
           break;
-        case "Intern":
+        case "intern":
           addIntern();
           break;
         default:
@@ -128,6 +134,16 @@ function addIntern() {
         console.log(res);
         initialPrompt();
     })
+}
+function exitApplication() {
+    var page = render(teamMembers);
+    fs.writeFile(outputPath, page, (err) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Success!");
+    });
+    
 }
 
 // Write code to use inquirer to gather information about the development team members,
