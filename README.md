@@ -30,6 +30,8 @@
  ## ProjectLink
  https://dmolina-power.github.io/team-tracker/
 
+ ![Alt Text](https://github.com/Dmolina-power/team-tracker/blob/master/ezgif.com%20team%20tracker.gif?raw=true)
+
  ## Email
  bigdpower@icloud.com
 
